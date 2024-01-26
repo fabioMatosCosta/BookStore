@@ -41,6 +41,7 @@ app.post('/books', async (request, response) =>{
 });
 
 // Route to Get all books from the database
+
 app.get('/books', async (request, response) => {
     try{
         const books = await Book.find({});
@@ -50,9 +51,27 @@ app.get('/books', async (request, response) => {
         });
     } catch(error) {
         console.log(error.message);
-        response.status(500).send({message: error.message})
+        response.status(500).send({message: error.message});
     }
-})
+});
+
+// Route to get one book from database by id
+
+app.get('/books/:id', async (request, response) => {
+    try{
+
+        const {id} = request.params;
+
+        const book = await Book.findById(id);
+
+        return response.status(200).json({ book });
+        
+    } catch(error) {
+        console.log(error.message);
+        response.status(500).send({message: error.message});
+    }
+});
+
 
 mongoose
     .connect(mongoDBURL)
