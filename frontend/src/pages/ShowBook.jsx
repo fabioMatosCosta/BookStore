@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
-import { BsTypeH1 } from 'react-icons/bs';
 
 const ShowBook = () => {
   const [book, setBook] = useState({});
@@ -16,7 +15,7 @@ const ShowBook = () => {
       .get(`http://localhost:5555/books/${id}`)
       .then((response) => {
         setBook(response.data);
-        setLoading(false); 
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
